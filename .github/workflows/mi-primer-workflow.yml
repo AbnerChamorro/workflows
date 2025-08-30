@@ -17,3 +17,11 @@ jobs:
             - name: Mostrar fecha y hora
               run: |
                 echo " Fecha actual: $(date)"
+
+            - name:  Configurar Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: 20
+            - name: Verificar Node.js
+              run: |
+                echo "Node.js version: $(node -v)"
