@@ -2,7 +2,7 @@ name: Mi Primer Workflow
 on: push
 
 jobs:
-    saludo:
+    build-and-deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Saludar al mundo
@@ -18,20 +18,23 @@ jobs:
               run: |
                 echo " Fecha actual: $(date)"
 
-            - name:  Configurar Node.js
-              uses: actions/setup-node@v3
-              with:
-                node-version: 20
-            - name: Verificar Node.js
-              run: |
-                echo "Node.js version: $(node -v)"
-
             - name: Hacer checkout del código
               uses: actions/checkout@v3
 
+            - name: Configurar Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: 20
+                cache: 'yarn'
+
+            - name: Verificar Node.js
+              run: |
+                echo "Node.js version: $(node -v)"
+                echo "Yarn version: $(yarn -v)"
+
             - name: Instalar dependencias
               run: |
-                yarn install
+                yarn install --frozen-lockfile
 
             - name: Verificar sintaxis con ESLint
               run: |
@@ -45,4 +48,29 @@ jobs:
               run: |
                 echo "Archivos en el directorio dist:"
                 ls -la dist/
+
+            - name: Subir artefactos de construcción
+              uses: actions/upload-artifact@v3
+              with:
+                name: react-build-artifacts
+                path: dist/
+                retention-days: 30
+
+            - name: Crear archivo de información del build
+              run: |
+                echo "Build Information" > build-info.txt
+                echo "==================" >> build-info.txt
+                echo "Fecha: $(date)" >> build-info.txt
+                echo "Commit: ${{ github.sha }}" >> build-info.txt
+                echo "Branch: ${{ github.ref_name }}" >> build-info.txt
+                echo "Repositorio: ${{ github.repository }}" >> build-info.txt
+                echo "Actor: ${{ github.actor }}" >> build-info.txt
+                cat build-info.txt
+
+            - name: Subir información del build
+              uses: actions/upload-artifact@v3
+              with:
+                name: build-info
+                path: build-info.txt
+                retention-days: 30
 
