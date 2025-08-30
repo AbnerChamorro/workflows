@@ -1,0 +1,18 @@
+name: Mi Primer Workflow
+on: push
+
+jobs:
+    saludo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Saludar al mundo
+              run: echo "Hola, mundo desde github actions!"
+
+            - name: Mostrar informacion del evento
+              run: |
+                echo "Repositorio: $GITHUB_REPOSITORY"
+                echo "Branch: $GITHUB_REF"
+                echo "Quien hizo el push: $GITHUB_ACTOR"
+            
+            - name: Mostrar fecha y hora
+              run: "Fecha actual: $(date)"
