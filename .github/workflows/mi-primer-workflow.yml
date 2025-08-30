@@ -10,9 +10,10 @@ jobs:
 
             - name: Mostrar informacion del evento
               run: |
-                echo "Repositorio: $GITHUB_REPOSITORY"
+                echo "Repositorio: ${{ github.repository }}"
                 echo "Branch: $GITHUB_REF"
                 echo "Quien hizo el push: $GITHUB_ACTOR"
             
             - name: Mostrar fecha y hora
-              run: "Fecha actual: $(date)"
+              run: |
+                echo " Fecha actual: $(date)"
