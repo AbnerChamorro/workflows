@@ -68,7 +68,7 @@ jobs:
                 cat build-info.txt
 
             - name: Subir información del build
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                 name: build-info
                 path: build-info.txt
