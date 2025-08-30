@@ -25,3 +25,24 @@ jobs:
             - name: Verificar Node.js
               run: |
                 echo "Node.js version: $(node -v)"
+
+            - name: Hacer checkout del código
+              uses: actions/checkout@v3
+
+            - name: Instalar dependencias
+              run: |
+                yarn install
+
+            - name: Verificar sintaxis con ESLint
+              run: |
+                yarn lint
+
+            - name: Construir proyecto React
+              run: |
+                yarn build
+
+            - name: Mostrar archivos generados
+              run: |
+                echo "Archivos en el directorio dist:"
+                ls -la dist/
+

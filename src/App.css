@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.card {
+  padding: 2em;
+  background-color: #333;
+  border-radius: 8px;
+  margin: 2em 0;
+}
+
+.card button {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.card button:hover {
+  background-color: #21a0c4;
+}
+
+.workflow-info {
+  background-color: #1a1a1a;
+  padding: 2em;
+  border-radius: 8px;
+  margin: 2em 0;
+  border-left: 4px solid #61dafb;
+}
+
+.workflow-info h2 {
+  color: #61dafb;
+  margin-bottom: 1em;
+}
+
+.workflow-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.workflow-info li {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  background-color: #333;
+  border-radius: 4px;
+}
+
+code {
+  background-color: #1a1a1a;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
